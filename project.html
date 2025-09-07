@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMRL AI Command Center - Full Project References</title>
+    <!-- Using Google Fonts and Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --text-dark: #212529;
+            --text-secondary: #6c757d;
+            --accent-blue: #3B82F6;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0,0,0,0.05);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 2em;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 2em 1em;
+            margin-bottom: 2em;
+            border-radius: 16px;
+            /* ✨ DESIGN ENHANCEMENT: Subtle gradient background */
+            background: linear-gradient(180deg, var(--bg-white) 0%, #f8f9fa 100%);
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.2em;
+        }
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 1em auto;
+        }
+        .header .stats {
+            margin-top: 1em;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+        }
+        /* ✨ DESIGN ENHANCEMENT: Quick Navigation Bar */
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 3em;
+        }
+        .quick-nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            background-color: var(--bg-white);
+            padding: 0.6em 1.2em;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+        .quick-nav a:hover {
+            background-color: var(--accent-blue);
+            color: var(--bg-white);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .category-card {
+            margin-bottom: 2.5em;
+            background-color: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            /* ✨ DESIGN ENHANCEMENT: Smoother transition on hover */
+            transition: all 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            border-color: #c9d2db;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8em;
+            padding: 1em 1.5em;
+            background-color: #f1f3f5;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .category-header i {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+        }
+        .category-header h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1F2937;
+            margin: 0;
+        }
+        .link-list {
+            padding: 1.5em;
+            list-style: none;
+        }
+        .link-list li {
+            margin-bottom: 1em;
+            padding: 0.8em;
+            border-bottom: 1px solid #e9ecef;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+        /* ✨ DESIGN ENHANCEMENT: Hover effect for individual links */
+        .link-list li:hover {
+            background-color: #f8f9fa;
+        }
+        .link-list li:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        .link-list a {
+            text-decoration: none;
+            color: var(--accent-blue);
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+            display: block;
+        }
+        .link-list a:hover {
+            text-decoration: underline;
+            color: #1d4ed8;
+        }
+        .link-list .source {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-top: 0.3em;
+            display: block;
+        }
+        #toTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--accent-blue);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #toTopBtn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Project References</h1>
+            <p>A comprehensive collection of resources, research, and technologies used in the KMRL AI Command Center project.</p>
+            <div class="stats"><span id="link-count">0</span> Total References</div>
+        </header>
+
+        <!-- ✨ DESIGN ENHANCEMENT: Quick Navigation Section -->
+        <nav class="quick-nav">
+            <a href="#context">Context & News</a>
+            <a href="#docs">Official Docs</a>
+            <a href="#research">Research</a>
+            <a href="#tech-stack">Tech Stack</a>
+            <a href="#open-data">Open Data</a>
+        </nav>
+        
+        <!-- Category: Project Context & News -->
+        <div id="context" class="category-card">
+            <div class="category-header"><i class="fas fa-newspaper"></i><h2>Project Context & News</h2></div>
+            <ul class="link-list">
+                <!-- Links remain the same -->
+                <li><a href="https://www.timesnownews.com/city/kochi/kochi-metros-return-gift-to-commuters-as-footfall-reaches-1-76-in-july-already-article-111704153" target="_blank">Kochi Metro's Return Gift To Commuters As Footfall Reaches 1.76L In July</a><span class="source">timesnownews.com</span></li>
+                <li><a href="https://timesofindia.indiatimes.com/city/kochi/snag-hits-kochi-metro-again-third-in-3-mths/articleshow/117213680.cms" target="_blank">Snag hits Kochi Metro again, third in 3 mths</a><span class="source">timesofindia.indiatimes.com</span></li>
+                <li><a href="https://infra.economictimes.indiatimes.com/news/urban-infrastructure/infrastructure-clash-kochi-metro-and-nhai-projects-cause-disruptions-at-palarivattom-junction/120688271" target="_blank">Infrastructure Clash: Kochi Metro and NHAI projects cause disruptions</a><span class="source">infra.economictimes.indiatimes.com</span></li>
+                <li><a href="https://www.newindianexpress.com/cities/kochi/2025/Aug/05/kochi-metros-pink-line-100-days-behind-schedule" target="_blank">Kochi Metro's Pink Line 100 days behind schedule</a><span class="source">newindianexpress.com</span></li>
+                <li><a href="https://www.sobha.com/blog/new-metro-line-impact-kochi-areas/" target="_blank">New Metro Line Impact on Kochi Areas</a><span class="source">sobha.com</span></li>
+                <li><a href="https://www.thehindu.com/news/national/kerala/kochi-metros-electric-feeder-buses-ferry-over-2-lakh-commuters/article69417508.ece" target="_blank">Kochi Metro’s electric feeder buses ferry over 2 lakh commuters</a><span class="source">thehindu.com</span></li>
+            </ul>
+        </div>
+
+        <!-- Category: Official Documentation & General Information -->
+        <div id="docs" class="category-card">
+            <div class="category-header"><i class="fas fa-landmark"></i><h2>Official Documentation & General Information</h2></div>
+            <ul class="link-list">
+                 <!-- Links remain the same -->
+                <li><a href="https://kochimetro.org/" target="_blank">Kochi Metro Rail Ltd (KMRL) - Official Website</a><span class="source">kochimetro.org</span></li>
+                <li><a href="https://watermetro.co.in/" target="_blank">Kochi Water Metro - Official Website</a><span class="source">watermetro.co.in</span></li>
+                <li><a href="https://en.wikipedia.org/wiki/Kochi_Metro" target="_blank">Kochi Metro - Wikipedia</a><span class="source">en.wikipedia.org</span></li>
+                <li><a href="https://en.wikipedia.org/wiki/Kochi_Water_Metro" target="_blank">Kochi Water Metro - Wikipedia</a><span class="source">en.wikipedia.org</span></li>
+                <li><a href="https://kochimetro.org/open-data/" target="_blank">KMRL Open Data Portal</a><span class="source">kochimetro.org</span></li>
+                <li><a href="https://metrorailtoday.com/interview/interview-with-loknath-behra-managing-director-kochi-metro-rail-ltd" target="_blank">Interview with Loknath Behra, Managing Director, KMRL</a><span class="source">metrorailtoday.com</span></li>
+                <li><a href="https://www.india.gov.in/official-website-kochi-metro-rail-ltd" target="_blank">Official Website of Kochi Metro Rail Ltd - National Portal of India</a><span class="source">india.gov.in</span></li>
+            </ul>
+        </div>
+        
+        <!-- Category: Academic Research -->
+        <div id="research" class="category-card">
+            <div class="category-header"><i class="fas fa-book-open"></i><h2>Academic Research & Papers</h2></div>
+            <ul class="link-list">
+                 <!-- Links remain the same -->
+                <li><a href="https://www.researchgate.net/publication/375771439_Artificial_intelligence_for_improving_public_transport_a_mapping_study" target="_blank">Artificial intelligence for improving public transport: a mapping study</a><span class="source">researchgate.net</span></li>
+                <li><a href="https://www.researchgate.net/publication/373141594_Artificial_Intelligence_for_Smart_Transportation" target="_blank">Artificial Intelligence for Smart Transportation</a><span class="source">researchgate.net</span></li>
+                <li><a href="https://www.mdpi.com/2071-1050/16/17/7763" target="_blank">AI in Public Transportation: A Systematic Literature Review</a><span class="source">mdpi.com</span></li>
+                <li><a href="https://www.researchgate.net/publication/380578735_Crowd_Density_Estimation_for_Video_Surveillance_Using_Deep_Learning_A_Review" target="_blank">Crowd Density Estimation for Video Surveillance Using Deep Learning: A Review</a><span class="source">researchgate.net</span></li>
+                <li><a href="https://www.researchgate.net/publication/371261304_Crowd_Counting_and_Density_Estimation_using_Deep_Network-A_Comprehensive_Survey" target="_blank">Crowd Counting and Density Estimation using Deep Network-A Comprehensive Survey</a><span class="source">researchgate.net</span></li>
+                <li><a href="https://www.researchgate.net/publication/377020156_N-BEATS_Temporal_Fusion_Transformer_based_Surface_Temperature_Prediction" target="_blank">N-BEATS & Temporal Fusion Transformer based Prediction</a><span class="source">researchgate.net</span></li>
+                <li><a href="https://www.semanticscholar.org/paper/Transformers-in-Time-Series-Analysis%3A-A-Tutorial-Ahmed-Nielsen/bdacaef16d45e1e7826bf5191637d436d5a98451" target="_blank">Transformers in Time Series Analysis: A Tutorial</a><span class="source">semanticscholar.org</span></li>
+                <li><a href="https://www.researchgate.net/publication/346485692_A_Deep_Learning_Approach_for_Predicting_Bus_Passenger_Demand_Based_on_Weather_Conditions" target="_blank">Predicting Bus Passenger Demand Based on Weather Conditions</a><span class="source">researchgate.net</span></li>
+                 <li><a href="https://ascelibrary.org/doi/10.1016/j.trc.2020.102717" target="_blank">Demand-Responsive Transit Systems: A Review</a><span class="source">ascelibrary.org</span></li>
+                 <li><a href="https://arxiv.org/html/2503.20148v1" target="_blank">Recent Advances in AI for Public Transportation (Preprint)</a><span class="source">arxiv.org</span></li>
+            </ul>
+        </div>
+        
+        <!-- Category: Technical Stack -->
+        <div id="tech-stack" class="category-card">
+            <div class="category-header"><i class="fas fa-cogs"></i><h2>Technical Stack & Implementation</h2></div>
+            <ul class="link-list">
+                 <!-- Links remain the same -->
+                 <li><a href="https://huggingface.co/docs/transformers/v4.23.0/model_doc/time_series_transformer" target="_blank">Time Series Transformer (Hugging Face)</a><span class="source">huggingface.co</span></li>
+                 <li><a href="https://towardsdatascience.com/decoding-time-unraveling-the-power-of-lstm-vs-n-beats-for-accurate-time-series-forecasting-ca5fdd20dbc" target="_blank">LSTM vs. N-BEATS for Time Series Forecasting</a><span class="source">towardsdatascience.com</span></li>
+                 <li><a href="https://www.rootstrap.com/blog/how-to-build-a-crowd-counting-model-using-csrnet" target="_blank">How to Build a Crowd Counting Model Using CSRNet</a><span class="source">rootstrap.com</span></li>
+                 <li><a href="https://fastapi.tiangolo.com/tutorial/" target="_blank">FastAPI - Main Tutorial</a><span class="source">fastapi.tiangolo.com</span></li>
+                 <li><a href="https://xailient.com/blog/what-is-edge-computer-vision-and-how-does-it-work/" target="_blank">What Is Edge Computer Vision and How Does It Work?</a><span class="source">xailient.com</span></li>
+                 <li><a href="https://www.emqx.com/en/blog/mqtt-and-kafka" target="_blank">MQTT and Kafka: A Powerful Combination for IoT</a><span class="source">emqx.com</span></li>
+                 <li><a href="https://prometheus.io/docs/introduction/comparison/" target="_blank">Comparison to alternatives - Prometheus</a><span class="source">prometheus.io</span></li>
+                 <li><a href="https://www.influxdata.com/comparison/influxdb-vs-prometheus/" target="_blank">InfluxDB vs. Prometheus Comparison</a><span class="source">influxdata.com</span></li>
+                 <li><a href="https://www.spaceo.ai/blog/machine-learning-tech-stack/" target="_blank">Choosing a Machine Learning Tech Stack</a><span class="source">spaceo.ai</span></li>
+            </ul>
+        </div>
+        
+        <!-- Category: Open Data Sources -->
+        <div id="open-data" class="category-card">
+            <div class="category-header"><i class="fas fa-database"></i><h2>Inspirational Open Data Sources</h2></div>
+            <ul class="link-list">
+                 <!-- Links remain the same -->
+                <li><a href="https://www.mta.info/open-data" target="_blank">MTA (New York) Open Data</a><span class="source">mta.info</span></li>
+                <li><a href="https://tfl.gov.uk/info-for/open-data-users/" target="_blank">Transport for London (TfL) Open Data</a><span class="source">tfl.gov.uk</span></li>
+                <li><a href="https://www.transitchicago.com/ridership/" target="_blank">Chicago Transit Authority (CTA) - Ridership Data</a><span class="source">transitchicago.com</span></li>
+                <li><a href="https://www.transit.dot.gov/ntd" target="_blank">National Transit Database (NTD) - USA</a><span class="source">transit.dot.gov</span></li>
+                <li><a href="https://data.transportation.gov/" target="_blank">U.S. Department of Transportation - Open Data</a><span class="source">data.transportation.gov</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <button onclick="scrollToTop()" id="toTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const linkCountElement = document.getElementById('link-count');
+            const links = document.querySelectorAll('.link-list a');
+            const totalLinks = links.length;
+            
+            // ✨ DESIGN ENHANCEMENT: Animate the counter on page load
+            let currentCount = 0;
+            const animateCount = () => {
+                if (currentCount < totalLinks) {
+                    currentCount++;
+                    linkCountElement.textContent = currentCount;
+                    setTimeout(animateCount, 25); // Adjust timing for faster/slower count
+                }
+            };
+            animateCount();
+
+            // "Back to Top" button functionality
+            const toTopBtn = document.getElementById('toTopBtn');
+            window.onscroll = function() {
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    toTopBtn.style.display = "block";
+                } else {
+                    toTopBtn.style.display = "none";
+                }
+            };
+        });
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
