@@ -1,205 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KMRL AI Command Center - Full Project References</title>
-    <link rel="icon" type="image/png" href="kochi-ai-logo.png">
-    <!-- Using Google Fonts and Font Awesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-light: #f8f9fa;
-            --bg-white: #ffffff;
-            --text-dark: #212529;
-            --text-secondary: #6c757d;
-            --accent-blue: #3B82F6;
-            --border-color: #dee2e6;
-            --shadow-color: rgba(0,0,0,0.05);
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 2em;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.7;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            padding: 2em 1em;
-            margin-bottom: 2em;
-            border-radius: 16px;
-            /* ✨ DESIGN ENHANCEMENT: Subtle gradient background */
-            background: linear-gradient(180deg, var(--bg-white) 0%, #f8f9fa 100%);
-        }
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.2em;
-        }
-        .header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 1em auto;
-        }
-        .header .stats {
-            margin-top: 1em;
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-        }
-        /* ✨ DESIGN ENHANCEMENT: Quick Navigation Bar */
-        .quick-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 3em;
-        }
-        .quick-nav a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            background-color: var(--bg-white);
-            padding: 0.6em 1.2em;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
-        .quick-nav a:hover {
-            background-color: var(--accent-blue);
-            color: var(--bg-white);
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KMRL AI Command Center</title>
+  <link rel="icon" type="image/png" href="kochi-ai-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        .category-card {
-            margin-bottom: 2.5em;
-            background-color: var(--bg-white);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px var(--shadow-color);
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            /* ✨ DESIGN ENHANCEMENT: Smoother transition on hover */
-            transition: all 0.3s ease;
-        }
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-            border-color: #c9d2db;
-        }
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 0.8em;
-            padding: 1em 1.5em;
-            background-color: #f1f3f5;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .category-header i {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-        }
-        .category-header h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #1F2937;
-            margin: 0;
-        }
-        .link-list {
-            padding: 1.5em;
-            list-style: none;
-        }
-        .link-list li {
-            margin-bottom: 1em;
-            padding: 0.8em;
-            border-bottom: 1px solid #e9ecef;
-            border-radius: 8px;
-            transition: background-color 0.2s ease;
-        }
-        /* ✨ DESIGN ENHANCEMENT: Hover effect for individual links */
-        .link-list li:hover {
-            background-color: #f8f9fa;
-        }
-        .link-list li:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-        }
-        .link-list a {
-            text-decoration: none;
-            color: var(--accent-blue);
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: color 0.2s;
-            display: block;
-        }
-        .link-list a:hover {
-            text-decoration: underline;
-            color: #1d4ed8;
-        }
-        .link-list .source {
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            margin-top: 0.3em;
-            display: block;
-        }
-        #toTopBtn {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 30px;
-            z-index: 99;
-            border: none;
-            outline: none;
-            background-color: var(--accent-blue);
-            color: white;
-            cursor: pointer;
-            padding: 15px;
-            border-radius: 50%;
-            font-size: 18px;
-            width: 50px;
-            height: 50px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        #toTopBtn:hover {
-            background-color: #1d4ed8;
-            transform: translateY(-3px);
-        }
-    </style>
+  <style>
+    :root {
+      --bg-light: #f3f4f6;
+      --bg-white: #ffffff;
+      --text-dark: #111827;
+      --text-secondary: #6b7280;
+      --accent-blue: #2563eb;
+      --accent-blue-hover: #1d4ed8;
+      --border-color: #e5e7eb;
+      --shadow-color: rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 3em 1em 2em 1em;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 0.3em 0;
+      color: var(--accent-blue);
+    }
+    .header p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      padding: 0.5em;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .tab-button {
+      padding: 0.7em 1.5em;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      background: var(--bg-white);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      color: var(--text-secondary);
+    }
+    .tab-button:hover {
+      background: #f3f4f6;
+      color: var(--accent-blue);
+    }
+    .tab-button.active {
+      background: var(--accent-blue);
+      color: #fff;
+      border-color: var(--accent-blue);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Content */
+    .tab-content {
+      display: none;
+      padding: 2em;
+      max-width: 1100px;
+      margin: 0 auto;
+      animation: fadeIn 0.4s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards (References) */
+    .category-card {
+      margin-bottom: 2.5em;
+      background-color: var(--bg-white);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px var(--shadow-color);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .category-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8em;
+      padding: 1em 1.5em;
+      background-color: #f9fafb;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .category-header i {
+      font-size: 1.2rem;
+      color: var(--accent-blue);
+    }
+    .category-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0;
+      color: var(--text-dark);
+    }
+
+    .link-list {
+      padding: 1.2em 1.5em;
+      list-style: none;
+    }
+    .link-list li {
+      margin-bottom: 1em;
+      padding: 0.8em;
+      border-bottom: 1px solid #e5e7eb;
+      border-radius: 8px;
+      transition: background-color 0.2s ease;
+    }
+    .link-list li:hover {
+      background-color: #f9fafb;
+    }
+    .link-list a {
+      text-decoration: none;
+      color: var(--accent-blue);
+      font-weight: 500;
+      font-size: 1.05rem;
+      display: block;
+    }
+    .link-list a:hover {
+      text-decoration: underline;
+      color: var(--accent-blue-hover);
+    }
+    .link-list .source {
+      font-size: 0.85em;
+      color: var(--text-secondary);
+      margin-top: 0.2em;
+      display: block;
+    }
+
+    /* Back to Top */
+    #toTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: var(--accent-blue);
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 18px;
+      width: 52px;
+      height: 52px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    #toTopBtn:hover {
+      background-color: var(--accent-blue-hover);
+      transform: translateY(-3px);
+    }
+    .tech-image {
+  width: 100%;
+  max-height: 350px; /* adjust if your image is too tall */
+  object-fit: contain; /* keeps proportions */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Project References</h1>
-            <p>A comprehensive collection of resources, research, and technologies used in the KMRL AI Command Center project.</p>
-            <div class="stats"><span id="link-count">0</span> Total References</div>
-        </header>
+  <header class="header">
+    <h1>Kochikonnect - AI Command Center</h1>
+    <p>A central hub for the problem statement, feasibility analysis, technical stack, and references to improve the KMRL metro system.</p>
+  </header>
 
-        <!-- ✨ DESIGN ENHANCEMENT: Quick Navigation Section -->
-        <nav class="quick-nav">
-            <a href="#context">Context & News</a>
-            <a href="#docs">Official Docs</a>
-            <a href="#research">Research</a>
-            <a href="#tech-stack">Tech Stack</a>
-            <a href="#open-data">Open Data</a>
-        </nav>
-        
-        <!-- Category: Project Context & News -->
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-button active" data-tab="problem"><i class="fas fa-lightbulb"></i> Problem Statement</button>
+    <button class="tab-button" data-tab="implementation"><i class="fas fa-tasks"></i> Implementation & Feasibility</button>
+    <button class="tab-button" data-tab="tech"><i class="fas fa-cogs"></i> Tech Stack</button>
+    <button class="tab-button" data-tab="references"><i class="fas fa-link"></i> References</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div id="problem" class="tab-content active">
+    <h2>Problem Statement</h2>
+    
+
+  <!-- Intro -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-train"></i><h2>The Core Challenge</h2></div>
+    <div class="link-list">
+      <p>Kochi Metro Rail Limited (KMRL) must decide every night which of its 25 four-car trainsets will:</p>
+      <ul>
+        <li>Enter <strong>revenue service</strong> at dawn,</li>
+        <li>Remain on <strong>standby</strong>, or</li>
+        <li>Be sent to the <strong>Inspection Bay Line</strong> for maintenance.</li>
+      </ul>
+      <p>This planning happens in a compressed 21:00–23:00 window, using siloed spreadsheets, manual logbooks, and ad-hoc WhatsApp updates. 
+      The process is opaque, error-prone, and difficult to scale as the fleet grows to 40 trainsets and two depots by 2027.</p>
+    </div>
+  </div>
+
+  <!-- Key Variables -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-layer-group"></i><h2>Six Interdependent Variables</h2></div>
+    <div class="link-list">
+      <ol>
+        <li><strong>Fitness Certificates</strong> – validity windows from Rolling-Stock, Signalling, and Telecom departments.</li>
+        <li><strong>Job Card Status</strong> – open vs. closed work orders from IBM Maximo.</li>
+        <li><strong>Branding Priorities</strong> – advertiser wrap commitments that must meet exposure hours.</li>
+        <li><strong>Mileage Balancing</strong> – fair allocation to bogies, brake-pads, and HVAC systems.</li>
+        <li><strong>Cleaning Slots</strong> – limited manpower and bay availability for deep-cleaning.</li>
+        <li><strong>Stabling Geometry</strong> – positioning rakes to minimise shunting and smooth morning rollouts.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Current Pain Points -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-exclamation-circle"></i><h2>Why the Current System Fails</h2></div>
+    <div class="link-list">
+      <ul>
+        <li>🚨 <strong>Single clearance lapse</strong> → unscheduled rake withdrawal, harming punctuality (99.5% KPI risk).</li>
+        <li>⚡ <strong>Uneven mileage use</strong> → accelerated wear and higher maintenance costs.</li>
+        <li>📉 <strong>Branding blind spots</strong> → penalties for missed advertiser SLAs.</li>
+        <li>🔄 <strong>Excessive shunting</strong> → wasted energy and safety risks at night.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- The Four AI Modules -->
+ 
+  <div class="category-card">
+  <div class="category-header"><i class="fas fa-microchip"></i><h2>AI Modules in Detail</h2></div>
+  <div class="link-list">
+
+    <h3>1. Demand-Aware Timetable Engine</h3>
+    <p>This module sits upstream of every other decision. It continuously absorbs automatic fare-collection (AFC) gate swipes, 
+    real-time platform head-counts from CCTV or LiDAR, and contextual factors such as weather, public-holiday calendars, and large-event schedules.</p>
+    <p>A lightweight streaming pipeline (<strong>Kafka → Flink/Spark Structured Streaming</strong>) cleans and windows the data into five- to fifteen-minute intervals. 
+    A forecasting layer—ideally an <strong>N-BEATS</strong>, <strong>Temporal Fusion Transformer</strong>, or <strong>Prophet ensemble</strong>—predicts passenger arrivals per station-direction for the next one to three hours.</p>
+    <p>The engine compares these demand curves with the current timetable and the pool of standby rakes to calculate <strong>optimal headways, dispatch times, and dwell-time tweaks</strong>. 
+    Outputs flow to the control room dashboard as colour-coded alerts (“+1 rake at Aluva 17:45”) and to the optimiser (Module 4) as demand constraints.</p>
+    <p>By automating what is currently a manual guesstimate, the metro can <strong>dampen peak-hour overcrowding</strong>, shave minutes off wait times, 
+    and avoid <strong>energy-wasting over-service</strong> during off-peak periods.</p>
+
+    <hr>
+
+    <h3>2. Fleet Health & Readiness Scorer</h3>
+    <p>Every evening, operations staff require an instant snapshot of which trainsets are genuinely service-ready. 
+    This scorer fuses heterogeneous maintenance signals: rolling-stock, signalling, and telecom fitness certificates (with their validity windows); 
+    open job cards exported from IBM Maximo; IoT telemetry on HVAC temperature drift, brake-pad thickness, and mileage since last overhaul; 
+    plus ad-hoc fault messages keyed in by depot engineers.</p>
+    <p>A rules-plus-ML logic assigns weighted penalties to each risk factor. For example:</p>
+    <ul>
+      <li>An <strong>expired telecom certificate</strong> is a hard block (score = 0).</li>
+      <li>Being within 500 km of a bogie-rotation limit reduces the score by 10 points.</li>
+    </ul>
+    <p>The result is a transparent <strong>0-100 readiness score</strong> accompanied by a human-readable explanation trail (e.g., “Score 73: mileage 480 km from limit, minor door fault open, branding hours met”).</p>
+    <p>Planners see at a glance which rakes can roll, which must be sidelined, and which need quick fixes to re-enter the pool—cutting emergency withdrawals and extending component life.</p>
+
+    <hr>
+
+    <h3>3. Unified Data Hub & Governance Layer</h3>
+    <p>KMRL’s operational information is currently scattered across <strong>CSV e-mails</strong>, <strong>WhatsApp snapshots</strong>, paper logbooks, and siloed SQL tables. 
+    The Unified Data Hub consolidates it all through an <strong>ETL backbone</strong> built on open-source tools such as <strong>Airbyte</strong> or <strong>NiFi</strong>, 
+    feeding into a cloud warehouse (<strong>BigQuery</strong>, <strong>Snowflake</strong>, or <strong>Postgres + TimescaleDB</strong>).</p>
+    <p>Incoming records are <strong>schema-validated, version-controlled, and enriched with metadata</strong> (who added it, when, and from which system). 
+    Role-based APIs and dashboards (Grafana/Metabase) expose a “single source of truth” to control-room operators, depot managers, advertisers, and auditors, 
+    while masking sensitive fields where required.</p>
+    <p>Built-in lineage tracking ensures that <strong>any nightly induction decision can be traced</strong> back to the exact job card or sensor packet that influenced it. 
+    This satisfies both <strong>safety regulators</strong> and <strong>Right to Information (RTI)</strong> requirements. 
+    By eliminating “Excel ping-pong” and ownership disputes, the hub becomes the <strong>foundation for advanced analytics and ML layers</strong>.</p>
+
+    <hr>
+
+    <h3>4. Multi-Objective Induction Optimizer & Simulator</h3>
+    <p>At 21:00 each night, this module ingests readiness scores (Module 2), demand forecasts (Module 1), and a rich constraint set: branding exposure targets, mileage-balancing policies, cleaning-bay capacities, and a graph model of depot track geometry.</p>
+    <p>It then applies <strong>optimization techniques</strong>:</p>
+    <ul>
+      <li><strong>Mixed-Integer Linear Programming (MILP)</strong> via solvers like CBC or Gurobi.</li>
+      <li><strong>Meta-heuristics</strong> such as NSGA-II or Simulated Annealing for scalability.</li>
+    </ul>
+    <p>The engine produces a <strong>Pareto-optimal ranked list</strong> of trainsets: those to induct, those to keep on standby, and those to send for maintenance. 
+    It also proposes <strong>exact stabling positions</strong> that minimise shunting and reduce morning rollout time.</p>
+    <p>Planners can interact with a <strong>browser-based simulator</strong>, tweak constraints (e.g., “Advertiser X requires +20 branding hours”), and immediately visualise the ripple effects on mileage distribution, crew shifts, or energy use. 
+    Each solution is paired with an explanation layer—why a rake was picked, what risk it mitigates—building operator trust and paving the way for gradual handover to fully algorithmic scheduling.</p>
+  </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Back to Top Button -->
+<button onclick="scrollToTop()" id="toTopBtn" title="Go to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+
+
+  <div id="implementation" class="tab-content">
+    <h2>Implementation & Feasibility</h2>
+
+  <!-- Roadmap -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-road"></i><h2>Implementation Roadmap</h2></div>
+    <div class="link-list">
+      <p>The rollout of an AI-driven induction planning system at Kochi Metro Rail Limited (KMRL) should be approached as a structured, phased program. 
+      This ensures stakeholder buy-in, minimizes risks, and allows learning loops before full-scale deployment. 
+      The implementation can be visualized across four stages:</p>
+
+      <h3>Stage 1: Foundations</h3>
+      <p>The first step is to establish the <strong>Unified Data Hub</strong>. Without reliable and consolidated data, every other module risks failure. 
+      This involves extracting feeds from IBM Maximo, depot logbooks, IoT telemetry, AFC gates, and CCTV/LiDAR sensors. 
+      ETL pipelines using tools like Airbyte or Apache NiFi ingest this data into a structured cloud warehouse (TimescaleDB for time-series, Postgres for relational, and S3 for raw storage). 
+      Schema validation and versioning policies are introduced so that every record can be traced back to its source.</p>
+
+      <h3>Stage 2: Intelligence</h3>
+      <p>Once the data foundation is in place, the focus shifts to the <strong>Demand-Aware Timetable Engine</strong> and the <strong>Fleet Health & Readiness Scorer</strong>. 
+      Streaming frameworks like Kafka + Flink process fare collection data, real-time crowd estimates, and contextual signals (weather, events). 
+      Machine learning models (N-BEATS, TFT, Prophet) are trained on historical demand patterns to forecast arrivals at 5–15 minute intervals. 
+      Meanwhile, the readiness scorer aggregates IoT diagnostics and maintenance reports into transparent 0–100 scores with explainable reasoning. 
+      These outputs feed dashboards that planners can immediately use.</p>
+
+      <h3>Stage 3: Optimization</h3>
+      <p>With demand forecasts and fleet scores available, the <strong>Multi-Objective Induction Optimizer</strong> is deployed. 
+      A constraint model is defined, incorporating branding exposure requirements, mileage balancing, depot capacity, cleaning slots, and safety rules. 
+      A solver (CBC/Gurobi for MILP or NSGA-II for heuristic trade-offs) is used to generate induction schedules. 
+      Outputs are paired with an interactive web simulator that allows planners to adjust assumptions and visualize ripple effects.</p>
+
+      <h3>Stage 4: Full Integration & Feedback Loops</h3>
+      <p>Finally, all modules are integrated into a central <strong>AI Command Center Dashboard</strong>. 
+      Operators see demand predictions, fleet readiness, and optimized induction plans in one place. 
+      Feedback loops are added: actual passenger counts are compared with forecasts, real faults are compared with predicted readiness, 
+      and optimizer results are tracked against punctuality and cost KPIs. 
+      These feedback signals improve the models over time, moving from decision-support to semi-autonomous scheduling.</p>
+    </div>
+  </div>
+
+  <!-- Feasibility Dimensions -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-balance-scale"></i><h2>Feasibility Dimensions</h2></div>
+    <div class="link-list">
+      <h3>1. Technical Feasibility</h3>
+      <p>All required technologies—ETL pipelines, cloud data warehouses, time-series forecasting models, IoT integration, and optimization solvers—are mature and widely available. 
+      Open-source ecosystems (Kafka, Flink, TimescaleDB, Metabase) significantly lower costs while maintaining flexibility. 
+      Kochi Metro already has AFC gates and CCTV systems in place, which can be extended with LiDAR counters. 
+      Thus, technical feasibility is rated as <strong>high</strong>.</p>
+
+      <h3>2. Operational Feasibility</h3>
+      <p>Introducing AI into metro operations demands cultural change. Planners accustomed to manual heuristics may initially distrust algorithmic outputs. 
+      This is mitigated by building <strong>explainability layers</strong>: each readiness score lists its reasons, each optimization run provides justification for every choice. 
+      By keeping humans in the loop during the transition, the system enhances rather than threatens operational autonomy.</p>
+
+      <h3>3. Economic Feasibility</h3>
+      <p>The upfront investment lies in cloud infrastructure, IoT telemetry integration, and training ML models. 
+      However, benefits accrue rapidly: reducing emergency withdrawals saves lakhs in maintenance penalties; 
+      better mileage balancing extends component life; branding compliance prevents revenue loss; and dynamic scheduling saves energy. 
+      A cost-benefit analysis projects a return on investment within 2–3 years.</p>
+
+      <h3>4. Organizational Feasibility</h3>
+      <p>Success depends on coordination across departments—Rolling Stock, Signalling, Telecom, Operations, and Commercial. 
+      A cross-functional task force should be established to oversee adoption. Since KMRL is government-owned, 
+      regulatory buy-in is also essential, especially to assure compliance with safety audits.</p>
+
+      <h3>5. Legal & Ethical Feasibility</h3>
+      <p>All modules must respect privacy laws and ensure that sensitive employee and commuter data is anonymized. 
+      Audit trails and data lineage tracking help satisfy Right to Information (RTI) requests and regulator queries. 
+      Ethical feasibility is strengthened by the fact that the system primarily optimizes safety, efficiency, and sustainability.</p>
+    </div>
+  </div>
+
+  <!-- Risk Analysis -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-exclamation-triangle"></i><h2>Risk Assessment & Mitigation</h2></div>
+    <div class="link-list">
+      <ul>
+        <li><strong>Data Quality Risk:</strong> Incomplete or inconsistent feeds may mislead forecasts.  
+        <em>Mitigation:</em> enforce schema validation, fallback heuristics, and redundant data sources.</li>
+        <li><strong>Model Drift Risk:</strong> Forecasting models may degrade as demand patterns shift.  
+        <em>Mitigation:</em> retrain periodically with rolling windows of new data.</li>
+        <li><strong>Resistance to Change:</strong> Staff may distrust or resist algorithmic scheduling.  
+        <em>Mitigation:</em> phased rollout, explainable AI outputs, and hybrid decision-making in early stages.</li>
+        <li><strong>Cybersecurity Risk:</strong> Cloud-based integration increases attack surfaces.  
+        <em>Mitigation:</em> role-based access, encryption, intrusion detection, and regular audits.</li>
+        <li><strong>Solver Scalability Risk:</strong> MILP solvers may become slow with larger fleets.  
+        <em>Mitigation:</em> fallback to meta-heuristics like NSGA-II or evolutionary algorithms.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Scalability Outlook -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-chart-line"></i><h2>Scalability & Future Outlook</h2></div>
+    <div class="link-list">
+      <p>The solution is inherently scalable. As fleet size grows and new depots come online, modules can be extended with minimal changes:</p>
+      <ul>
+        <li><strong>Demand Forecasting</strong> can expand to new lines and integrate external mobility data (buses, feeder networks).</li>
+        <li><strong>Fleet Scoring</strong> can adapt to new IoT sensors as rolling stock modernizes.</li>
+        <li><strong>Data Hub</strong> can federate with state-level transport datasets, enabling integrated multimodal planning.</li>
+        <li><strong>Optimizer</strong> can incorporate carbon emissions and sustainability KPIs as new objectives.</li>
+      </ul>
+      <p>Over time, the system can transition from decision-support to <strong>semi-autonomous scheduling</strong>, 
+      freeing staff for strategic planning while maintaining transparency and accountability. 
+      The platform also positions KMRL as a reference model for smart automation in Indian urban transport, 
+      aligning with the Government of India’s Digital India and Smart City missions.</p>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+
+<!-- Back to Top Button -->
+<button onclick="scrollToTop()" id="toTopBtn" title="Go to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+
+ <div id="tech" class="tab-content">
+  <h2>Tech Stack</h2>
+
+  <div class="category-card">
+    <div class="category-header">
+      <i class="fas fa-image"></i>
+      <h2>System Architecture Diagram</h2>
+    </div>
+    <div class="link-list">
+      <img src="techstack.jpeg" alt="System Architecture" class="tech-image">
+    </div>
+  </div>
+
+  <!-- Ingestion -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-cloud-upload-alt"></i><h2>Data Ingestion</h2></div>
+    <div class="link-list">
+      <p><strong>Apache Kafka</strong> is used as the live "message bus" of the system. Whenever a passenger enters through AFC gates 
+      or a train sensor reports data (like brake pad status), the event is published to Kafka. Other parts of the system can 
+      subscribe to these events and get updates instantly. This ensures that no event is lost and the system reacts in real-time.</p>
+      <p><strong>Airbyte</strong> is used to ingest static data such as nightly Excel sheets and CSV exports (maintenance job cards). 
+      Instead of manually uploading files, Airbyte automates this process and pushes the cleaned data into the database every night.</p>
+      <p><em>How they connect:</em> Kafka handles real-time streams (AFC + IoT), while Airbyte handles batch uploads. Both flow into 
+      <strong>PostgreSQL</strong> for further processing.</p>
+    </div>
+  </div>
+
+  <!-- Processing -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-broom"></i><h2>Data Processing</h2></div>
+    <div class="link-list">
+      <p><strong>Python (pandas)</strong> scripts clean and standardize incoming data. For example, if one department writes 
+      "Clear" while another writes "Valid", pandas unifies these into one standard value. It also fills missing data, ensuring 
+      consistency across the system.</p>
+      <p><strong>Kafka Streams</strong> filters real-time messages directly in the stream. If an AFC gate sends an invalid reading 
+      (like negative passengers), the stream processor drops or corrects it before it reaches storage.</p>
+      <p><em>How they connect:</em> Kafka Streams processes messages before they enter the database. For batch data, Python scripts 
+      process Airbyte-ingested files before saving them into PostgreSQL.</p>
+    </div>
+  </div>
+
+  <!-- Storage -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-database"></i><h2>Data Storage</h2></div>
+    <div class="link-list">
+      <p><strong>PostgreSQL</strong> acts as the main structured database where all standardized data is stored. This makes it easy 
+      for other services to query the system using simple SQL.</p>
+      <p><strong>TimescaleDB</strong>, an extension of PostgreSQL, is optimized for time-series data such as passenger entries per 
+      minute, IoT sensor values, and rolling fleet mileage. It allows us to query patterns over time efficiently.</p>
+      <p><strong>AWS S3 / MinIO</strong> are used for raw data storage, such as CCTV images, sensor dumps, or large log files. 
+      This ensures scalability without overloading PostgreSQL.</p>
+      <p><em>How they connect:</em> Real-time + batch data → PostgreSQL/TimescaleDB. Heavy files → S3/MinIO for archiving.</p>
+    </div>
+  </div>
+
+  <!-- Forecasting -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-chart-line"></i><h2>Passenger Demand Forecasting</h2></div>
+    <div class="link-list">
+      <p><strong>Prophet</strong> (developed by Facebook) is used for simple, interpretable forecasts. It can automatically account 
+      for holidays, weekends, and seasonal patterns. For example, it learns that Onam week will always see higher ridership.</p>
+      <p><strong>N-BEATS</strong> (Neural Basis Expansion Analysis for Time Series) is a deep learning model built in PyTorch. 
+      It gives more accurate results when there is lots of historical data. N-BEATS handles complex passenger flow patterns 
+      that Prophet may miss.</p>
+      <p><em>How they connect:</em> Historical data is fetched from PostgreSQL. Forecasts (1–3 hours ahead) are written back into 
+      PostgreSQL, where they are used by the optimizer and displayed on dashboards.</p>
+    </div>
+  </div>
+
+  <!-- Fleet Scorer -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-train"></i><h2>Fleet Health & Readiness Scorer</h2></div>
+    <div class="link-list">
+      <p>IoT devices on trains send telemetry (HVAC temperature, brake pad wear, mileage since overhaul) into Kafka. 
+      Maintenance job cards from IBM Maximo and departmental fitness certificates are also ingested.</p>
+      <p>A <strong>Python rules + ML service</strong> calculates a readiness score (0–100) for each trainset. For example:
+        <ul>
+          <li>Expired telecom certificate → hard block (score = 0).</li>
+          <li>Near mileage threshold → -10 points.</li>
+          <li>Minor fault → -5 points.</li>
+        </ul>
+      </p>
+      <p><em>How it connects:</em> Sensor data → Kafka → Python scoring service → PostgreSQL (scores saved with explanations).</p>
+    </div>
+  </div>
+
+  <!-- Optimizer -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-project-diagram"></i><h2>Induction Optimizer & Simulator</h2></div>
+    <div class="link-list">
+      <p>The optimizer combines three things: demand forecasts, fleet readiness scores, and operational constraints 
+      (branding requirements, depot geometry, cleaning slots).</p>
+      <p><strong>PuLP</strong>, a Python optimization library, solves this as a mathematical problem (MILP – Mixed Integer 
+      Linear Programming). It produces the optimal plan: which trains go to service, standby, or maintenance, 
+      and how they should be positioned overnight.</p>
+      <p>Planners interact with this through a browser-based simulator where they can adjust constraints 
+      (e.g., increase branding hours for a sponsor) and instantly see ripple effects.</p>
+      <p><em>How it connects:</em> PostgreSQL (data + forecasts) → PuLP optimizer → Final schedule → FastAPI API + Dashboard.</p>
+    </div>
+  </div>
+
+  <!-- APIs & Deployment -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-server"></i><h2>APIs & Deployment</h2></div>
+    <div class="link-list">
+      <p><strong>FastAPI</strong> serves as the backend for the system. It exposes REST APIs for dashboards, mobile apps, 
+      or external systems to fetch forecasts, readiness scores, and optimized schedules.</p>
+      <p><strong>Docker Compose</strong> bundles everything (Kafka, PostgreSQL, FastAPI, Grafana) into containers that 
+      run with a single command. This makes deployment easier and ensures the same setup works on any machine.</p>
+      <p><em>How it connects:</em> All services (Kafka, DB, ML models) run in Docker. FastAPI fetches results from PostgreSQL 
+      and serves them to dashboards and planners.</p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="category-card">
+    <div class="category-header"><i class="fas fa-tv"></i><h2>Dashboards & Monitoring</h2></div>
+    <div class="link-list">
+      <p><strong>Grafana</strong> (or <strong>Metabase</strong>) provides dashboards for planners. They can see passenger demand curves, 
+      train readiness scores, and optimizer outputs in a visual interface.</p>
+      <p><strong>Prometheus</strong> monitors all services (Kafka, FastAPI, databases). If a pipeline crashes or data 
+      is missing, Prometheus raises alerts so issues can be fixed quickly.</p>
+      <p><em>How it connects:</em> PostgreSQL feeds Grafana dashboards, while Prometheus keeps the system healthy by monitoring APIs and pipelines.</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Back to Top Button -->
+<button onclick="scrollToTop()" id="toTopBtn" title="Go to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+
+  <div id="references" class="tab-content">
+    <h2>References</h2>
+
+    <!-- 👉 Paste your reference sections (context, docs, research, open-data) here -->
+       <!-- Category: Project Context & News -->
 <div id="context" class="category-card">
     <div class="category-header"><i class="fas fa-newspaper"></i><h2>Project Context & News</h2></div>
     <ul class="link-list">
@@ -381,42 +772,45 @@
         <li><a href="https://www.mobiliseyourcity.net/sites/default/files/2019-12/Kochi_metro-experience_170418%20%281%29.pdf" target="_blank">Kochi Metro Experience Report (Mobilise Your City)</a><span class="source">mobiliseyourcity.net</span></li>
     </ul>
 </div>
+  
 
+  <!-- Back to Top Button -->
+  <button onclick="scrollToTop()" id="toTopBtn" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
+ <script>
+  // Tab Switching
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
 
-    <button onclick="scrollToTop()" id="toTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const tabId = button.getAttribute("data-tab");
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const linkCountElement = document.getElementById('link-count');
-            const links = document.querySelectorAll('.link-list a');
-            const totalLinks = links.length;
-            
-            // ✨ DESIGN ENHANCEMENT: Animate the counter on page load
-            let currentCount = 0;
-            const animateCount = () => {
-                if (currentCount < totalLinks) {
-                    currentCount++;
-                    linkCountElement.textContent = currentCount;
-                    setTimeout(animateCount, 25); // Adjust timing for faster/slower count
-                }
-            };
-            animateCount();
+      tabButtons.forEach(btn => btn.classList.remove("active"));
+      tabContents.forEach(content => content.classList.remove("active"));
 
-            // "Back to Top" button functionality
-            const toTopBtn = document.getElementById('toTopBtn');
-            window.onscroll = function() {
-                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                    toTopBtn.style.display = "block";
-                } else {
-                    toTopBtn.style.display = "none";
-                }
-            };
-        });
+      button.classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+  });
 
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-    </script>
+  // Back to Top button
+  const toTopBtn = document.getElementById('toTopBtn');
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+      toTopBtn.style.display = "block";
+    } else {
+      toTopBtn.style.display = "none";
+    }
+  });
+
+  function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+
 </body>
 </html>
